@@ -6,9 +6,6 @@ import boto3
 from app.config import settings
 
 # Inicializamos el cliente de SageMaker Runtime.
-# Le pasamos la región y, si existen en la configuración, las credenciales.
-# Si las credenciales son None, boto3 intentará buscarlas automáticamente
-# (por ejemplo, en roles de EC2 o en archivos ~/.aws/credentials).
 runtime = boto3.client(
     "sagemaker-runtime",
     region_name=settings.aws_region,
@@ -54,3 +51,4 @@ def call_sagemaker_cnn_lstm(x) -> dict:
         "class_name": class_name,
         "probs": probs.tolist(),
     }
+
